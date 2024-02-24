@@ -4,6 +4,7 @@ import Header from './Header/Header';
 import SearchCity from './SearchCity/SearchCity';
 import { useEffect } from 'react';
 import { fetchCities } from '../redux/City/cityOperations';
+import CityCard from './CityCard/CityCard';
 
 function App() {
   const dispatch = useDispatch()
@@ -18,6 +19,7 @@ function App() {
     <>
       <Header />
       <SearchCity />
+      <CityCard cities={cities} />
     </>
   );
 }
