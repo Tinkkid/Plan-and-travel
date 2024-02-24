@@ -1,0 +1,14 @@
+.formWrapper {
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+}
+
+.labelTitle {
+   font-size: 18px;
+   gont-weight:500;
+}
+
+.star {
+   text-color: red;
+}

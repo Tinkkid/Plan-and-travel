@@ -1,9 +1,9 @@
 import React from 'react'
-import css from './Header.module.css';
+import styles from './Header.module.css';
 
 const Header = () => {
   return (
-    <div className={css.wrapper}>
+    <div className={styles.wrapper}>
       Plan a trip and discover Ukraine!
     </div>
   )

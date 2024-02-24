@@ -1,10 +1,10 @@
 import React from 'react'
-import css from './CityCard.module.css'
+import styles from './CityCard.module.css'
 
 const CityCard = ({ cities }) => {
   const {url,id,address,city} = cities;
    return (
-     <section className={css.wrapper}>
+     <section className={styles.wrapper}>
        <div>
          <div>
            <img
