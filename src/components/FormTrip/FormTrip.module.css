@@ -4,11 +4,32 @@
    gap: 20px;
 }
 
-.labelTitle {
-   font-size: 18px;
-   gont-weight:500;
+.inputWrapper{
+   display:flex;
+   flex-direction:column;
 }
 
-.star {
-   text-color: red;
+.labelTitle {
+   font-size: 18px;
+   font-weight:500;
+}
+
+.inputContent {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #C6CACD;
+  border-radius: 4px;
+}
+
+.inputContent::placeholder {
+  color: #999;
+}
+
+.inputContent:focus, .inputContent:hover {
+  outline: none;
+  background-color: #EFF8FF;
+}
+
+.starRequired {
+   color: red;
 }

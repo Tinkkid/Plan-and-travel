@@ -13,14 +13,11 @@ function App() {
   const dispatch = useDispatch()
   const cities = useSelector(selectCities);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  console.log("TCL: App -> modalIsOpen", modalIsOpen)
-
 
   useEffect(() => {
     dispatch(fetchCities());
   },[dispatch])
 
-  
   return (
     <>
       <Header />
