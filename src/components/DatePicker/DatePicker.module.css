@@ -51,4 +51,5 @@
 
 .disabled {
   color: #A7ABB0;
+  pointer-events: none;
 }
