@@ -1,15 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import styles from './Modal.module.css';
+import style from './Modal.module.css';
 
 const Modal = ({ onClose, children }) => {;
 
   return ReactDOM.createPortal(
-    <div className={styles.modalBackdrop}>
-      <div className={styles.modalContent}>
-        <button className={styles.modalCloseButton} onClick={onClose}>
-          Close
-        </button>
+    <div className={style.modalBackdrop}>
+      <div className={style.modalContent}>
+        <div className={style.modalHeader}>
+          <p>Create trip</p>
+          <button className={style.modalCloseButton} onClick={onClose}>
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+        </div>
         {children}
       </div>
     </div>,

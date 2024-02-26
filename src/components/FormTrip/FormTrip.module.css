@@ -1,7 +1,9 @@
-.formWrapper {
+.container {
    display: flex;
    flex-direction: column;
    gap: 20px;
+   padding: 20px;
+   margin-bottom: 50px;
 }
 
 .inputWrapper{
@@ -11,8 +13,8 @@
 }
 
 .labelTitle {
-   font-size: 18px;
-   font-weight:500;
+   font-size: 16px;
+   margin-bottom: 10px;
 }
 
 .inputContent {
@@ -22,11 +24,21 @@
   border-radius: 4px;
 }
 
-.inputContent::placeholder {
+.btnContent {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #C6CACD;
+  background-color:#fff;
+  border-radius: 4px;
+  width:100%;
+  text-align:start;
+}
+
+.inputContent::placeholder, .btnContentPlaceholder  {
   color: #999;
 }
 
-.inputContent:focus, .inputContent:hover {
+.inputContent:focus, .inputContent:hover, .btnContent:focus, .btnContent:hover {
   outline: none;
   background-color: #EFF8FF;
 }
@@ -39,22 +51,4 @@
   position: relative;
 }
 
-.datePickerWrapper input {
-  padding-right: 30px;
-}
 
-.calendarIcon {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-}
-
-/* .calendarIcon {
-  fill: blue; 
-} */
-
-.inputContent[type="date"] {
-    /* Ваші стилі тут */
-    color: red; /* Приклад: зміна кольору тексту на червоний */
-}

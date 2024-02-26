@@ -22,53 +22,73 @@ const FormTrip = () => {
 
     return (
       <div>
-        <form className={style.formWrapper}>
-          <div className={style.inputWrapper}>
-            <label className={style.labelTitle}>
-              <span className={style.starRequired}>*</span>Start date
-            </label>
-            <div className={style.datePickerWrapper}>
-              <button
+        <form>
+          <div className={style.container}>
+            <div className={style.inputWrapper}>
+              <label className={style.labelTitle}>
+                <span className={style.starRequired}>*</span>City
+              </label>
+              <input
                 className={style.inputContent}
-                onClick={e => {
-                  e.preventDefault();
-                  setShowStartCalendar(true);
-                }}
-              >
-                {startDate
-                  ? startDate.toISOString().split('T')[0]
-                  : 'Select a date'}
-              </button>
-              {showStartCalendar && (
-                <DatePicker
-                  selectedDate={startDate}
-                  handleDateChange={handleStartDateChange}
-                />
-              )}
+                readOnly
+                placeholder="Please select a city"
+              />
             </div>
-          </div>
-          <div className={style.inputWrapper}>
-            <label className={style.labelTitle}>
-              <span className={style.starRequired}>*</span>End date
-            </label>
-            <div className={style.datePickerWrapper}>
-              <button
-                className={style.inputContent}
-                onClick={e => {
-                  e.preventDefault();
-                  setShowEndCalendar(true);
-                }}
-              >
-                {endDate
-                  ? endDate.toISOString().split('T')[0]
-                  : 'Select a date'}
-              </button>
-              {showEndCalendar && (
-                <DatePicker
-                  selectedDate={endDate}
-                  handleDateChange={handleEndDateChange}
-                />
-              )}
+            <div className={style.inputWrapper}>
+              <label className={style.labelTitle}>
+                <span className={style.starRequired}>*</span>Start date
+              </label>
+              <div className={style.datePickerWrapper}>
+                <button
+                  className={`${
+                    startDate
+                      ? style.btnContent
+                      : `${style.btnContent} ${style.btnContentPlaceholder}`
+                  }`}
+                  onClick={e => {
+                    e.preventDefault();
+                    setShowStartCalendar(true);
+                  }}
+                >
+                  {startDate
+                    ? startDate.toISOString().split('T')[0]
+                    : 'Select a date'}
+                </button>
+                {showStartCalendar && (
+                  <DatePicker
+                    selectedDate={startDate}
+                    handleDateChange={handleStartDateChange}
+                  />
+                )}
+              </div>
+            </div>
+            <div className={style.inputWrapper}>
+              <label className={style.labelTitle}>
+                <span className={style.starRequired}>*</span>End date
+              </label>
+              <div className={style.datePickerWrapper}>
+                <button
+                  className={`${
+                    startDate
+                      ? style.btnContent
+                      : `${style.btnContent} ${style.btnContentPlaceholder}`
+                  }`}
+                  onClick={e => {
+                    e.preventDefault();
+                    setShowEndCalendar(true);
+                  }}
+                >
+                  {endDate
+                    ? endDate.toISOString().split('T')[0]
+                    : 'Select a date'}
+                </button>
+                {showEndCalendar && (
+                  <DatePicker
+                    selectedDate={endDate}
+                    handleDateChange={handleEndDateChange}
+                  />
+                )}
+              </div>
             </div>
           </div>
         </form>
