@@ -8,12 +8,12 @@ const CityCard = ({ cities }) => {
        <div>
          <div>
            <img
-             alt={cities[0].adress}
-             src={cities[0].url}
+             alt={cities[0]?.address}
+             src={cities[0]?.url}
              width={300}
              height={300}
            />
-           <p>{cities[0].city}</p>
+           <p>{cities[0]?.city}</p>
          </div>
        </div>
      </section>

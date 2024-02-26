@@ -13,6 +13,7 @@ function App() {
   const dispatch = useDispatch()
   const cities = useSelector(selectCities);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  console.log("TCL: App -> modalIsOpen", modalIsOpen)
 
   useEffect(() => {
     dispatch(fetchCities());
@@ -24,9 +25,11 @@ function App() {
       <SearchCity />
       <CityCard cities={cities} />
       <Button setModalIsOpen={setModalIsOpen} />
-      {modalIsOpen && <Modal onClose={() => setModalIsOpen(false)} isOpen={modalIsOpen}>
-        <FormTrip />
-      </Modal>}
+      {modalIsOpen && (
+        <Modal onClose={() => setModalIsOpen(false)} isOpen={modalIsOpen}>
+          <FormTrip />
+        </Modal>
+      )}
     </>
   );
 }

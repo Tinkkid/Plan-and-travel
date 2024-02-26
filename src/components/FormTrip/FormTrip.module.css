@@ -7,6 +7,7 @@
 .inputWrapper{
    display:flex;
    flex-direction:column;
+    position: relative;
 }
 
 .labelTitle {
@@ -32,4 +33,28 @@
 
 .starRequired {
    color: red;
+}
+
+.datePickerWrapper {
+  position: relative;
+}
+
+.datePickerWrapper input {
+  padding-right: 30px;
+}
+
+.calendarIcon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+/* .calendarIcon {
+  fill: blue; 
+} */
+
+.inputContent[type="date"] {
+    /* Ваші стилі тут */
+    color: red; /* Приклад: зміна кольору тексту на червоний */
 }
