@@ -1,16 +1,17 @@
 .calendar {
-  background-color: #fff;
+  background-color: #EFF8FF;
   border: 1px solid #ccc;
   border-radius: 5px;
-  width: 400px;
+  width: 300px;
 }
 
 .calendarHeader {
    display:flex;
    justify-content: center;
    align-items:center;
-   margin: 0 10px;
-  /* border-bottom: 1px solid #ccc; */
+   padding: 10px;
+   border-bottom: 1px solid #ccc;
+    background-color: #80BDE3;
 }
 
 .calendarHeader p {
@@ -23,7 +24,7 @@
 }
 
 .calendarBody {
-margin:5px;
+ margin:8px;
 }
 
 .calendarDays {
@@ -36,10 +37,11 @@ margin:5px;
   cursor: pointer;
   padding: 5px;
   text-align: center;
+  font-weight: 500;
 }
 
 .calendarDate:hover {
-  background-color: #f0f0f0;
+  background-color: #53B1FD;
 }
 
 .selected {
@@ -48,5 +50,5 @@ margin:5px;
 }
 
 .disabled {
-  background-color: grey;
+  color: #A7ABB0;
 }

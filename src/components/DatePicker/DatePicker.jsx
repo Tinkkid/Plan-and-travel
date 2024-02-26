@@ -59,12 +59,12 @@ const DatePicker = ({ selectedDate, handleDateChange }) => {
                 key={day}
                 className={`${
                   isDateDisabled(new Date(currentYear, currentMonth, day))
-                    ? style.disabled
-                    : ''
+                    ? `${style.disabled} ${style.calendarDate}`
+                    : style.calendarDate
                 } ${
                   selectedDate && selectedDate.getDate() === day
-                    ? style.selected
-                    : ''
+                    ? `${style.selected} ${style.calendarDate}`
+                    : style.calendarDate
                 }`}
                 onClick={() => handleSelectionDate(day)}
               >

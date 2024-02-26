@@ -51,7 +51,10 @@ const FormTrip = () => {
                   }}
                 >
                   {startDate
-                    ? startDate.toISOString().split('T')[0]
+                    ? `${('0' + startDate.getDate()).slice(-2)}.${(
+                        '0' +
+                        (startDate.getMonth() + 1)
+                      ).slice(-2)}.${startDate.getFullYear()}`
                     : 'Select a date'}
                 </button>
                 {showStartCalendar && (
@@ -79,7 +82,10 @@ const FormTrip = () => {
                   }}
                 >
                   {endDate
-                    ? endDate.toISOString().split('T')[0]
+                    ? `${('0' + endDate.getDate()).slice(-2)}.${(
+                        '0' +
+                        (endDate.getMonth() + 1)
+                      ).slice(-2)}.${endDate.getFullYear()}`
                     : 'Select a date'}
                 </button>
                 {showEndCalendar && (
