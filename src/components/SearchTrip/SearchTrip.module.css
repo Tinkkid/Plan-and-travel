@@ -8,6 +8,7 @@
   width: 100%;
   max-width: 280px;
   border: 1px solid #c6cacd;
+  background-color: #d1e9ff;
   border-radius: 4px;
   overflow: hidden;
 }
@@ -78,7 +79,24 @@
     background-color: #007bff;
 }
 
-.searchBtn ion-icon {
+.searchBtn ion-icon, .closeBtn ion-icon {
   width: 24px;
   height: 24px;
+}
+
+.closeBtn {
+   padding: 0;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease; 
+}
+
+.closeBtn:hover ion-icon {
+  color: red;
 }

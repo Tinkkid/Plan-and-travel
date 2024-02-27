@@ -10,8 +10,6 @@ const SearchTrip = ({ newTripAdded, setSelectedTrip }) => {
   const [searchingTrip, setSearchingTrip] = useState('');
   const [filtredTrip, setFiltredTrip] = useState([]);
   const [showFiltredTrip, setShowFiltredTrip] = useState(false);
-  // const [selectedTrip, setSelectedTrip] = useState();
-  // console.log('TCL: SearchTrip -> selectedTrip', selectedTrip);
 
   useEffect(() => {
     dispatch(fetchAllTrip());
@@ -31,7 +29,16 @@ const SearchTrip = ({ newTripAdded, setSelectedTrip }) => {
 
   const handleSubmitSearch = e => {
     e.preventDefault();
-    // Якщо потрібно щось зробити при відправці форми
+    const selectedCity = trips.find(
+      item => item.city.toLowerCase() === searchingTrip.toLowerCase()
+    );
+    if (selectedCity) {
+      setSelectedTrip(selectedCity);
+      setSearchingTrip(selectedCity.city);
+      setShowFiltredTrip(false);
+    } else {
+      console.log('Вибране місто не знайдено в списку');
+    }
   };
 
   const handleSelectedTrip = trip => {
@@ -39,6 +46,11 @@ const SearchTrip = ({ newTripAdded, setSelectedTrip }) => {
     setSearchingTrip(trip.city);
     setShowFiltredTrip(false);
   };
+
+  const removeTrip = () => {
+    setSearchingTrip('');
+    setSelectedTrip('');
+  }
 
   return (
     <div className={style.container}>
@@ -53,7 +65,11 @@ const SearchTrip = ({ newTripAdded, setSelectedTrip }) => {
           placeholder="Search your trip"
           onChange={handleOnchangeTrip}
         />
-
+        {searchingTrip !== '' && (
+          <button className={style.closeBtn} type="button" onClick={removeTrip}>
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+        )}
         {showFiltredTrip && (
           <ul className={style.cityList}>
             {filtredTrip.map(item => (
