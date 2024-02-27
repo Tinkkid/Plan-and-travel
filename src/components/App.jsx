@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { selectAlltrips, selectCities } from '../redux/City/citySlice';
+import { selectAlltrips, selectCities, selectTrip } from '../redux/City/citySlice';
 import Header from './Header/Header';
-import SearchCity from './SearchCity/SearchCity';
+import SearchTrip from './SearchTrip/SearchTrip';
 import { useEffect, useState } from 'react';
 import { fetchAllTrip, fetchCities } from '../redux/City/cityOperations';
-import CityCard from './CityCard/CityCard';
+import TripCard from './TripCard/TripCard';
 import Modal from './Modal/Modal';
 import Button from './Button/Button';
 import FormTrip from './FormTrip/FormTrip';
@@ -12,8 +12,9 @@ import FormTrip from './FormTrip/FormTrip';
 function App() {
   const dispatch = useDispatch()
   const cities = useSelector(selectCities);
-
+  const newTripAdded = useSelector(selectTrip);
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [selectedTrip, setSelectedTrip] = useState('');
 
   useEffect(() => {
     dispatch(fetchCities());
@@ -23,8 +24,15 @@ function App() {
   return (
     <>
       <Header />
-      <SearchCity />
-      <CityCard cities={cities} />
+      <SearchTrip
+        newTripAdded={newTripAdded}
+        setSelectedTrip={setSelectedTrip}
+      />
+      <TripCard
+        cities={cities}
+        newTripAdded={newTripAdded}
+        selectedTrip={selectedTrip}
+      />
       <Button setModalIsOpen={setModalIsOpen} />
       {modalIsOpen && (
         <Modal onClose={() => setModalIsOpen(false)} isOpen={modalIsOpen}>

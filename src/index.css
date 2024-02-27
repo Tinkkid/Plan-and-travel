@@ -29,7 +29,7 @@ h1 {
   line-height: 1.1;
 }
 
-p, h1, h2 {
+p, h1, h2, ul, li {
   padding: 0;
   margin: 0;
 }

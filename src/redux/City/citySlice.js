@@ -45,4 +45,5 @@ const citySlice = createSlice({
 export const selectCities = state => state.city.items;
 export const selectTrip = state => state.city.responseTrip;
 export const selectAlltrips = state => state.city.allTrips;
+export const selectLoading = state => state.city.isLoading;
 export const cityReducer = citySlice.reducer;

@@ -9,7 +9,7 @@
 .inputWrapper{
    display:flex;
    flex-direction:column;
-    position: relative;
+   position: relative;
 }
 
 .labelTitle {
