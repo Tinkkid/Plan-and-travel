@@ -91,7 +91,7 @@ console.log('TCL: DatePicker -> selectedDate', selectedDate);
         <div className={style.calendarDays}>
           {range(1, getNumbersOfDaysInMoth(currentYear, currentMonth) + 1).map(
             day => (
-              <buttom
+              <p
                 key={day}
                 className={`${
                   isDateDisabled(new Date(currentYear, currentMonth, day))
@@ -108,7 +108,7 @@ console.log('TCL: DatePicker -> selectedDate', selectedDate);
                 onClick={() => handleSelectionDate(day)}
               >
                 {day}
-              </buttom>
+              </p>
             )
           )}
         </div>
