@@ -2,33 +2,33 @@ import React, { useEffect, useRef, useState } from 'react';
 import style from './FormTrip.module.css';
 import DatePicker from '../DatePicker/DatePicker';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCities } from '../../redux/City/cityOperations';
+import { addTrip, fetchAllTrip, fetchCities } from '../../redux/City/cityOperations';
 import { selectCities } from '../../redux/City/citySlice';
 import { useOutsideClick } from '../../hooks/useOutsideClick';
+import { formatDateString } from '../../utils';
 
-const FormTrip = () => {
-  const dispatch = useDispatch()
+const FormTrip = ({ setModalIsOpen }) => {
+  const dispatch = useDispatch();
   const [startDate, setStartDate] = useState(null);
+  console.log('TCL: FormTrip -> startDate', startDate);
   const [endDate, setEndDate] = useState(null);
   const [showStartCalendar, setShowStartCalendar] = useState(false);
   const [showEndCalendar, setShowEndCalendar] = useState(false);
-  const [showCitiesList, setShowCitiesList] = useState(false)
-  const [showCities, setShowCities] = useState(false); 
-  const [selectedCity, setSelectedCity] = useState(null); 
-  console.log("TCL: FormTrip -> selectedCity", selectedCity)
-  const [errorMessageCity, setErrorMessageCity] = useState('')
+  const [showCities, setShowCities] = useState(false);
+  const [selectedCity, setSelectedCity] = useState(null);
+  const [photoCity, setPhotoCity] = useState('');
+  const [errorMessageCity, setErrorMessageCity] = useState('');
   const cities = useSelector(selectCities);
-  console.log("TCL: FormTrip -> cities", cities)
+
   const refSelect = useRef();
   const refContent = useRef();
 
   const closeOptions = () => {
     setShowStartCalendar(false);
     setShowEndCalendar(false);
-    setShowCitiesList(false);
-  }
+    setShowCities(false);
+  };
   useOutsideClick(refContent, refSelect, closeOptions);
-
 
   const handleStartDateChange = date => {
     setStartDate(date);
@@ -44,17 +44,35 @@ const FormTrip = () => {
     dispatch(fetchCities());
   }, [dispatch]);
 
-    const handleCitySelect = city => {
-      setSelectedCity(city.city);
-      setShowCities(false);
-    };
+  const handleCitySelect = city => {
+    setSelectedCity(city.city);
+    setPhotoCity(city.url);
+    setShowCities(false);
+  };
+
+  const formattedStartDate = formatDateString(startDate);
+  const formattedEndDate = formatDateString(endDate);
 
   const handleSubmit = e => {
     e.preventDefault();
     if (!selectedCity) {
       setErrorMessageCity('Please select a city');
+      return;
     } else {
-      setErrorMessageCity('great!')
+      dispatch;
+      setErrorMessageCity('great!');
+    }
+    const requestBody = {
+      city: selectedCity,
+      startDate: formattedStartDate,
+      endDate: formattedEndDate,
+      photo: photoCity,
+    };
+    try {
+      dispatch(addTrip(requestBody));
+      setModalIsOpen(false);
+    } catch (error) {
+      console.error('Error submitting form:', error);
     }
   };
 
@@ -72,8 +90,13 @@ const FormTrip = () => {
               ref={refSelect}
               placeholder="Please select a city"
               value={selectedCity ? selectedCity : ''}
-              onClick={() => setShowCities(true)}
+              onClick={() => {
+                setShowCities(true);
+                setShowEndCalendar(false);
+                setShowStartCalendar(false);
+              }}
             />
+
             {showCities && (
               <div className={style.citiesDropdown} ref={refContent}>
                 {cities.map(city => (
@@ -103,14 +126,10 @@ const FormTrip = () => {
                   e.preventDefault();
                   setShowStartCalendar(true);
                   setShowEndCalendar(false);
+                  setShowCities(false);
                 }}
               >
-                {startDate
-                  ? `${('0' + startDate.getDate()).slice(-2)}.${(
-                      '0' +
-                      (startDate.getMonth() + 1)
-                    ).slice(-2)}.${startDate.getFullYear()}`
-                  : 'Select a date'}
+                {startDate ? formattedStartDate : 'Select a date'}
               </button>
               {showStartCalendar && (
                 <DatePicker
@@ -135,14 +154,10 @@ const FormTrip = () => {
                   e.preventDefault();
                   setShowEndCalendar(true);
                   setShowStartCalendar(false);
+                  setShowCities(false);
                 }}
               >
-                {endDate
-                  ? `${('0' + endDate.getDate()).slice(-2)}.${(
-                      '0' +
-                      (endDate.getMonth() + 1)
-                    ).slice(-2)}.${endDate.getFullYear()}`
-                  : 'Select a date'}
+                {endDate ? formattedEndDate : 'Select a date'}
               </button>
               {showEndCalendar && (
                 <DatePicker
