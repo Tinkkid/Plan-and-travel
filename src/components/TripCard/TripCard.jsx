@@ -8,7 +8,6 @@ import Spinner from '../Spinner/Spinner';
 const TripCard = ({ newTripAdded, selectedTrip }) => {
   const dispatch = useDispatch();
   const trips = useSelector(selectAlltrips);
-  console.log("TCL: TripCard -> trips", trips)
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -16,7 +15,6 @@ const TripCard = ({ newTripAdded, selectedTrip }) => {
   }, [dispatch, newTripAdded]);
 
   
-  console.log('TCL: TripCard -> selectedTrip', selectedTrip);
 
   const sortedTrips = trips.slice().sort((a, b) => {
     if (a.city === 'Kyiv') return -1;

@@ -10,6 +10,7 @@ import Button from '../Button/Button';
 import FormTrip from '../FormTrip/FormTrip';
 import style from './App.module.css'
 import WeatherWidget from '../WeatherWidget/WeatherWidget';
+import Forecast from '../ForecastWeater/Forecast';
 
 function App() {
   const dispatch = useDispatch()
@@ -26,18 +27,23 @@ function App() {
   return (
     <>
       <Header />
-      <SearchTrip
-        newTripAdded={newTripAdded}
-        setSelectedTrip={setSelectedTrip}
-      />
       <div className={style.container}>
-        <TripCard
-          cities={cities}
+        <SearchTrip
           newTripAdded={newTripAdded}
-          selectedTrip={selectedTrip}
+          setSelectedTrip={setSelectedTrip}
         />
-        <Button setModalIsOpen={setModalIsOpen} />
-        <div><WeatherWidget/></div>
+        <div className={style.containerTripAndWidget}>
+          <TripCard
+            cities={cities}
+            newTripAdded={newTripAdded}
+            selectedTrip={selectedTrip}
+          />
+          <Button setModalIsOpen={setModalIsOpen} />
+          <div>
+            <WeatherWidget />
+          </div>
+        </div>
+        <Forecast />
       </div>
 
       {modalIsOpen && (

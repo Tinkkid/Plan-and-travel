@@ -1,0 +1,33 @@
+.widgetWrapper {
+   width: 300px;
+   height: 600px;
+   display: flex;
+   flex-direction: column;
+   background-color:#EFF8FF;
+   border: 1px solid #C6CACD;
+  border-radius: 4px;
+}
+
+.widgetWeatherWrapper{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+}
+
+.widgetDay {
+font-size: 20px;
+font-weight:500;
+}
+
+.widgetTemperature{
+font-size: 24px;
+}
+
+.widgetCity{
+font-size:18px;
+}
+
+.weatherIcon {
+   width: 30px;
+   height: 30px;
+}

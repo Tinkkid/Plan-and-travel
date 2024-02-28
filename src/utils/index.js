@@ -1,4 +1,4 @@
-import { dayNames } from "../constans/calendar";
+import { dayNames, dayNamesFull } from "../constans/calendar";
 
 export const getNumbersOfDaysInMoth = (year, month) => {
    return new Date(year, month + 1, 0).getDate();
@@ -32,3 +32,7 @@ export const formatDateString = date => {
   }
 };
 
+export const getFullNameOfCurrentDay = () => {
+   const today = new Date().getDay();
+   return dayNamesFull[today];
+}

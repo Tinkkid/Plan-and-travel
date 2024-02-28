@@ -1,4 +1,7 @@
 .container {
-   display: flex;
    padding:0 50px;
+}
+
+.containerTripAndWidget {
+   display: flex;
 }
