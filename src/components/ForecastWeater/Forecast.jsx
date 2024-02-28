@@ -79,7 +79,7 @@ const Forecast = ({ currentTrip, selectedTrip }) => {
                 )}
               </div>
               <div className={style.forecastTemperature}>
-                {Math.round(day.tempmax)}°/{Math.round(day.tempmin)}°
+                {Math.round(day.tempmax)}°/ {Math.round(day.tempmin)}°
               </div>
             </li>
           </ul>

@@ -18,6 +18,9 @@ const FormTrip = ({ setModalIsOpen }) => {
   const [photoCity, setPhotoCity] = useState('');
   const [cityAddress, setCityAddrress] = useState('')
   const [errorMessageCity, setErrorMessageCity] = useState('');
+  const [errorMessageStartDate, setErrorMessageStartDate] = useState('')
+  const [errorMessageEndDate, setErrorMessageEndDate] = useState('');
+  console.log("TCL: FormTrip -> errorMessageCity", errorMessageCity)
   const cities = useSelector(selectCities);
 
   const refSelect = useRef();
@@ -33,11 +36,13 @@ const FormTrip = ({ setModalIsOpen }) => {
   const handleStartDateChange = date => {
     setStartDate(date);
     setShowStartCalendar(false);
+    setErrorMessageStartDate('');
   };
 
   const handleEndDateChange = date => {
     setEndDate(date);
     setShowEndCalendar(false);
+    setErrorMessageEndDate('');
   };
 
   useEffect(() => {
@@ -46,6 +51,7 @@ const FormTrip = ({ setModalIsOpen }) => {
 
   const handleCitySelect = city => {
     setSelectedCity(city.city);
+     setErrorMessageCity('');
     setPhotoCity(city.url);
     setShowCities(false);
     setCityAddrress(city.address);
@@ -61,7 +67,14 @@ const FormTrip = ({ setModalIsOpen }) => {
       return;
     } else {
       dispatch;
-      setErrorMessageCity('great!');
+    }
+    if (!startDate) {
+      setErrorMessageStartDate('Please select a date');
+      return
+    }
+    if (!endDate) {
+      setErrorMessageEndDate('Please select a date');
+      return;
     }
     const requestBody = {
       city: cityAddress,
@@ -77,6 +90,16 @@ const FormTrip = ({ setModalIsOpen }) => {
       console.error('Error submitting form:', error);
     }
   };
+
+  const handleCancelClick = () => {
+    setShowStartCalendar(false);
+    setShowEndCalendar(false);
+    setShowCities(false);
+    setModalIsOpen(false);
+    setSelectedCity('');
+    setPhotoCity('');
+    setCityAddrress('');
+  }
 
   return (
     <div>
@@ -98,7 +121,9 @@ const FormTrip = ({ setModalIsOpen }) => {
                 setShowStartCalendar(false);
               }}
             />
-
+            {errorMessageCity && (
+              <p className={style.errorMessage}>{errorMessageCity}</p>
+            )}
             {showCities && (
               <div className={style.citiesDropdown} ref={refContent}>
                 {cities.map(city => (
@@ -130,13 +155,18 @@ const FormTrip = ({ setModalIsOpen }) => {
                   setShowEndCalendar(false);
                   setShowCities(false);
                 }}
+                ref={refSelect}
               >
                 {startDate ? formattedStartDate : 'Select a date'}
               </button>
+              {errorMessageStartDate && (
+                <p className={style.errorMessage}>{errorMessageStartDate}</p>
+              )}
               {showStartCalendar && (
                 <DatePicker
                   selectedDate={startDate}
                   handleDateChange={handleStartDateChange}
+                  refContent={refContent}
                 />
               )}
             </div>
@@ -148,7 +178,7 @@ const FormTrip = ({ setModalIsOpen }) => {
             <div className={style.datePickerWrapper}>
               <button
                 className={`${
-                  startDate
+                  endDate
                     ? style.btnContent
                     : `${style.btnContent} ${style.btnContentPlaceholder}`
                 }`}
@@ -158,20 +188,35 @@ const FormTrip = ({ setModalIsOpen }) => {
                   setShowStartCalendar(false);
                   setShowCities(false);
                 }}
+                ref={refSelect}
               >
                 {endDate ? formattedEndDate : 'Select a date'}
               </button>
+              {errorMessageEndDate && (
+                <p className={style.errorMessage}>{errorMessageEndDate}</p>
+              )}
               {showEndCalendar && (
                 <DatePicker
                   selectedDate={endDate}
                   handleDateChange={handleEndDateChange}
+                  refContent={refContent}
                 />
               )}
             </div>
           </div>
         </div>
-        <button type="bitton">Cancel</button>
-        <button type="submit">Save</button>
+        <div className={style.btnWrapper}>
+          <button
+            className={style.btnCancel}
+            type="bitton"
+            onClick={handleCancelClick}
+          >
+            Cancel
+          </button>
+          <button className={style.btnSubmit} type="submit">
+            Save
+          </button>
+        </div>
       </form>
     </div>
   );

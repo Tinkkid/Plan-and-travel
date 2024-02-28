@@ -1,50 +1,51 @@
 .widgetWrapper {
-   width: 300px;
-   height: 400px;
-   display: flex;
-   flex-direction: column;
-   background-color:#EFF8FF;
-   border: 1px solid #C6CACD;
+  padding: 10px;
+  width: 280px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  background-color: #eff8ff;
+  border: 1px solid #c6cacd;
   border-radius: 4px;
-      justify-content: center;
+  justify-content: center;
 }
 
-.widgetWeatherWrapper{
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
+.widgetWeatherWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .widgetTemperatureAndIcon {
-   display:flex;
-   align-items:center;
-   gap: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 .widgetDay {
-font-size: 20px;
-font-weight:500;
+  font-size: 20px;
+  font-weight: 500;
 }
 
-.widgetTemperature{
-   position:relative;
-font-size: 46px;
-font-weight:500;
+.widgetTemperature {
+  position: relative;
+  font-size: 46px;
+  font-weight: 500;
 }
 
-.widgetCity{
-font-size:18px;
+.widgetCity {
+  font-size: 18px;
 }
 
 .weatherIcon {
-width: 60px;
-    height: 60px;
+  width: 60px;
+  height: 60px;
 }
 
 .widgetCelsius {
-   position:absolute;
-   top: 12px;
-    left: 30px;
-    font-size: 20px;
+  position: absolute;
+  top: 12px;
+  left: 30px;
+  font-size: 20px;
 }

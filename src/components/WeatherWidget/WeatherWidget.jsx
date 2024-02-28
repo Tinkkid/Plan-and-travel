@@ -16,7 +16,7 @@ const WeatherWidget = ({ currentTrip, selectedTrip }) => {
 
   console.log('TCL: WeatherWidget ->selectedTrip ', selectedTrip);
 
-  console.log('TCL: WeatherWidget -> currentTrip', currentTrip.startDate);
+  console.log('TCL: WeatherWidget -> currentTrip', currentTrip);
 
   useEffect(() => {
     let defaultCity = 'Kyiv';
@@ -50,6 +50,18 @@ const WeatherWidget = ({ currentTrip, selectedTrip }) => {
 
   if (loading) return <div className={style.widgetWrapper}>Loading...</div>;
 
+  const getStartDate = () => {
+    if (currentTrip) {
+      return currentTrip.startDate;
+    } else if (selectedTrip) {
+      return selectedTrip.startDate;
+    } else {
+      return null;
+    }
+  };
+
+  const startDate = getStartDate();
+
   return (
     <div className={style.widgetWrapper}>
       <div className={style.widgetWeatherWrapper}>
@@ -63,12 +75,12 @@ const WeatherWidget = ({ currentTrip, selectedTrip }) => {
             />
           )}
           <p className={style.widgetTemperature}>
-            <span className={style.widgetCelsius}>°C</span>
-            {roundedTemp}
+            {/* <span className={style.widgetCelsius}>°C</span> */}
+            {roundedTemp}&deg;C
           </p>
         </div>
         <p className={style.widgetCity}>{currentWeather?.address}</p>
-        <CountdownTimer startDate={currentTrip.startDate} />
+        <CountdownTimer startDate={startDate} />
       </div>
     </div>
   );

@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { parse } from 'date-fns';
+import style from './CountdownTimer.module.css'
 
 const CountdownTimer = ({ startDate }) => {
 
-   const parseStartDate = parse(startDate, 'dd.MM.yyyy', new Date());
+ const parseStartDate = startDate ? parse(startDate, 'dd.MM.yyyy', new Date()) : null;
 
   const calculateTimeLeft = () => {
+        if (!parseStartDate) return null;
+
     const difference = parseStartDate - new Date();
     let timeLeft = {};
 
@@ -23,7 +26,18 @@ const CountdownTimer = ({ startDate }) => {
 
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
+  // const intervalLabels = {
+  //   days: 'Days',
+  //   hours: 'Hours',
+  //   minutes: 'Minutes',
+  //   seconds: 'Seconds',
+  // };
+
+
+  const intervalLabels = ['Days','Hours','Minutes', 'Seconds']
+
   useEffect(() => {
+     if (!parseStartDate) return;
     const timer = setTimeout(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
@@ -31,29 +45,44 @@ const CountdownTimer = ({ startDate }) => {
     return () => clearTimeout(timer);
   });
 
+  if (!parseStartDate) {
+    return <span>Choose a trip!</span>;
+  }
+
   const timerComponents = [];
 
-  Object.keys(timeLeft).forEach(interval => {
-    if (!timeLeft[interval]) {
-      return;
-    }
+  if (timeLeft && typeof timeLeft === 'object' && Object.keys(timeLeft).length > 0) {
 
-    timerComponents.push(
-      <span>
-        {timeLeft[interval]} {interval}{' '}
-      </span>
-    );
-  });
+    Object.keys(timeLeft).forEach((interval, index) => {
+
+      if (!timeLeft[interval]) {
+        return;
+      }
+
+      timerComponents.push(
+        <div key={index}>
+          <p>{timeLeft[interval]}</p>
+        </div>
+      );
+    });
+  }
+
 
   return (
     <div>
       {timerComponents.length ? (
-        timerComponents
+        <div className={style.timerWrapper}>{timerComponents}</div>
       ) : (
-        <span>Час подорожі настав!</span>
+        <span>It's travel time!</span>
       )}
+      <div className={style.timerTime}>
+        {timeLeft && timeLeft.days > 0 && <span>Day</span>}
+        {timeLeft && timeLeft.hours > 0 && <span>Hours</span>}
+        {timeLeft && timeLeft.minutes > 0 && <span>Minutes</span>}
+        {timeLeft &&  timeLeft.seconds > 0 && <span>Seconds</span>}
+      </div>
     </div>
   );
 };
 
-export default CountdownTimer;
+  export default CountdownTimer;

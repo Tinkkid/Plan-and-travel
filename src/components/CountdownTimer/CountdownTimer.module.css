@@ -1,0 +1,15 @@
+.timerWrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.timerTime {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  font-size: 12px;
+  text-align: center;
+}

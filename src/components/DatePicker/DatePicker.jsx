@@ -3,11 +3,15 @@ import style from './DatePicker.module.css';
 import { monthNames } from '../../constans/calendar';
 import { getNumbersOfDaysInMoth, getSortedDays, range } from '../../utils';
 
-const DatePicker = ({ selectedDate, handleDateChange }) => {
+const DatePicker = ({
+  selectedDate,
+  handleDateChange,
+  refContent
+}) => {
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
-console.log('TCL: DatePicker -> selectedDate', selectedDate);
+  console.log('TCL: DatePicker -> selectedDate', selectedDate);
   useEffect(() => {
     setCurrentMonth(new Date().getMonth());
     setCurrentYear(new Date().getFullYear());
@@ -67,7 +71,7 @@ console.log('TCL: DatePicker -> selectedDate', selectedDate);
       currentMonth === new Date().getMonth() + 1);
 
   return (
-    <div className={style.calendar}>
+    <div className={style.calendar} ref={refContent}>
       <div className={style.calendarHeader}>
         {!isFirstMonth && (
           <ion-icon name="chevron-back-outline" onClick={prevMonth}></ion-icon>
