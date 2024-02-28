@@ -2,12 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import style from './FormTrip.module.css';
 import DatePicker from '../DatePicker/DatePicker';
 import { useDispatch, useSelector } from 'react-redux';
-import { addTrip, fetchAllTrip, fetchCities } from '../../redux/City/cityOperations';
+import { addTrip, fetchCities } from '../../redux/City/cityOperations';
 import { selectCities } from '../../redux/City/citySlice';
 import { useOutsideClick } from '../../hooks/useOutsideClick';
 import { formatDateString } from '../../utils';
 
-const FormTrip = ({ setModalIsOpen }) => {
+const FormTrip = ({ setModalIsOpen, selectedTrip }) => {
   const dispatch = useDispatch();
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
@@ -16,11 +16,10 @@ const FormTrip = ({ setModalIsOpen }) => {
   const [showCities, setShowCities] = useState(false);
   const [selectedCity, setSelectedCity] = useState(null);
   const [photoCity, setPhotoCity] = useState('');
-  const [cityAddress, setCityAddrress] = useState('')
+  const [cityAddress, setCityAddrress] = useState('');
   const [errorMessageCity, setErrorMessageCity] = useState('');
-  const [errorMessageStartDate, setErrorMessageStartDate] = useState('')
+  const [errorMessageStartDate, setErrorMessageStartDate] = useState('');
   const [errorMessageEndDate, setErrorMessageEndDate] = useState('');
-  console.log("TCL: FormTrip -> errorMessageCity", errorMessageCity)
   const cities = useSelector(selectCities);
 
   const refSelect = useRef();
@@ -51,10 +50,10 @@ const FormTrip = ({ setModalIsOpen }) => {
 
   const handleCitySelect = city => {
     setSelectedCity(city.city);
-     setErrorMessageCity('');
+    setErrorMessageCity('');
     setPhotoCity(city.url);
     setShowCities(false);
-    setCityAddrress(city.address);
+    setCityAddrress(city.city);
   };
 
   const formattedStartDate = formatDateString(startDate);
@@ -70,7 +69,7 @@ const FormTrip = ({ setModalIsOpen }) => {
     }
     if (!startDate) {
       setErrorMessageStartDate('Please select a date');
-      return
+      return;
     }
     if (!endDate) {
       setErrorMessageEndDate('Please select a date');
@@ -99,7 +98,7 @@ const FormTrip = ({ setModalIsOpen }) => {
     setSelectedCity('');
     setPhotoCity('');
     setCityAddrress('');
-  }
+  };
 
   return (
     <div>

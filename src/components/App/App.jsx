@@ -19,6 +19,13 @@ function App() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedTrip, setSelectedTrip] = useState('');
   const [currentTrip, setCurrentTrip] = useState('')
+  const [searchingTrip, setSearchingTrip] = useState('');
+
+    const removeTrip = () => {
+      setSearchingTrip('');
+      setSelectedTrip('');
+      setCurrentTrip(null);
+    };
 
   useEffect(() => {
     dispatch(fetchCities());
@@ -32,6 +39,9 @@ function App() {
           newTripAdded={newTripAdded}
           setSelectedTrip={setSelectedTrip}
           setCurrentTrip={setCurrentTrip}
+          searchingTrip={searchingTrip}
+          setSearchingTrip={setSearchingTrip}
+          removeTrip={removeTrip}
         />
         <div className={style.containerTripAndWidget}>
           <TripCard
@@ -39,8 +49,9 @@ function App() {
             newTripAdded={newTripAdded}
             selectedTrip={selectedTrip}
             setCurrentTrip={setCurrentTrip}
+            currentTrip={currentTrip}
           />
-          <Button setModalIsOpen={setModalIsOpen} />
+          <Button setModalIsOpen={setModalIsOpen} removeTrip={removeTrip} />
           <div>
             <WeatherWidget
               currentTrip={currentTrip}
@@ -53,7 +64,10 @@ function App() {
 
       {modalIsOpen && (
         <Modal onClose={() => setModalIsOpen(false)} isOpen={modalIsOpen}>
-          <FormTrip setModalIsOpen={setModalIsOpen} />
+          <FormTrip
+            setModalIsOpen={setModalIsOpen}
+            selectedTrip={selectedTrip}
+          />
         </Modal>
       )}
     </>

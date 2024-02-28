@@ -11,7 +11,6 @@ const DatePicker = ({
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
-  console.log('TCL: DatePicker -> selectedDate', selectedDate);
   useEffect(() => {
     setCurrentMonth(new Date().getMonth());
     setCurrentYear(new Date().getFullYear());

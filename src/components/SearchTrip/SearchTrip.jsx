@@ -4,10 +4,17 @@ import { useEffect, useState } from 'react';
 import { fetchAllTrip } from '../../redux/City/cityOperations';
 import style from './SearchTrip.module.css';
 
-const SearchTrip = ({ newTripAdded, setSelectedTrip, setCurrentTrip }) => {
+const SearchTrip = ({
+  newTripAdded,
+  setSelectedTrip,
+  setCurrentTrip,
+  searchingTrip,
+  setSearchingTrip,
+  removeTrip
+}) => {
   const dispatch = useDispatch();
   const trips = useSelector(selectAlltrips);
-  const [searchingTrip, setSearchingTrip] = useState('');
+
   const [filtredTrip, setFiltredTrip] = useState([]);
   const [showFiltredTrip, setShowFiltredTrip] = useState(false);
 
@@ -48,11 +55,11 @@ const SearchTrip = ({ newTripAdded, setSelectedTrip, setCurrentTrip }) => {
     setShowFiltredTrip(false);
   };
 
-  const removeTrip = () => {
-    setSearchingTrip('');
-    setSelectedTrip('');
-    setCurrentTrip(null);
-  };
+  // const removeTrip = () => {
+  //   setSearchingTrip('');
+  //   setSelectedTrip('');
+  //   setCurrentTrip(null);
+  // };
 
   return (
     <div className={style.container}>

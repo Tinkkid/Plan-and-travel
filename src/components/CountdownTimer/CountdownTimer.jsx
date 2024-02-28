@@ -26,16 +26,6 @@ const CountdownTimer = ({ startDate }) => {
 
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
-  // const intervalLabels = {
-  //   days: 'Days',
-  //   hours: 'Hours',
-  //   minutes: 'Minutes',
-  //   seconds: 'Seconds',
-  // };
-
-
-  const intervalLabels = ['Days','Hours','Minutes', 'Seconds']
-
   useEffect(() => {
      if (!parseStartDate) return;
     const timer = setTimeout(() => {

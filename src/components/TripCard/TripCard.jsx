@@ -5,7 +5,12 @@ import { selectAlltrips, selectTrip } from '../../redux/City/citySlice';
 import { fetchAllTrip } from '../../redux/City/cityOperations';
 import Spinner from '../Spinner/Spinner';
 
-const TripCard = ({ newTripAdded, selectedTrip, setCurrentTrip }) => {
+const TripCard = ({
+  newTripAdded,
+  selectedTrip,
+  setCurrentTrip,
+  currentTrip,
+}) => {
   const dispatch = useDispatch();
   const trips = useSelector(selectAlltrips);
   const [loading, setLoading] = useState(false);
@@ -24,9 +29,9 @@ const TripCard = ({ newTripAdded, selectedTrip, setCurrentTrip }) => {
     setLoading(true);
   };
 
-   const handleTripSelected = trip => {
-     setCurrentTrip(trip);
-   };
+  const handleTripSelected = trip => {
+    setCurrentTrip(trip);
+  };
 
   return (
     <section className={style.wrapper}>
@@ -35,8 +40,10 @@ const TripCard = ({ newTripAdded, selectedTrip, setCurrentTrip }) => {
         sortedTrips.map(item => (
           <div
             key={item.id}
-            className={style.tripContainer}
-            onClick={()=>handleTripSelected(item)}
+            className={`${style.tripContainer} ${
+              currentTrip === item && style.selected
+            }`}
+            onClick={() => handleTripSelected(item)}
           >
             {!loading && <Spinner />}
             <div style={{ display: loading ? 'block' : 'none' }}>

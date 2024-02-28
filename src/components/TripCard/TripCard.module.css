@@ -7,27 +7,32 @@
 
 .photoCity {
   width: 100%;
-  height: 100px;
+  height: 150px;
   object-fit: cover;
 }
 
 .tripContainer {
   cursor:pointer;
   border-radius: 2px;
+  height: 240px;
   border: 1px solid #c6cacd;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px,
     rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 2px 1px -1px;
+}
+.tripContainer:hover, .tripContainer:focus, .selected {
+  border: 1px solid #007bff;
+ box-shadow: rgba(0, 0, 255, 0.2) 0px 7px 29px 0px;
 }
 
 .cityLabel {
   font-size: 16px;
   font-weight: bold;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .tripDate {
   font-size: 14px;
-  margin: 20px 0;
+  margin: 10px 0;
 }
 
 .contentAboutTrip {

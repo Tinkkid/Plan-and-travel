@@ -75,7 +75,6 @@ const WeatherWidget = ({ currentTrip, selectedTrip }) => {
             />
           )}
           <p className={style.widgetTemperature}>
-            {/* <span className={style.widgetCelsius}>°C</span> */}
             {roundedTemp}&deg;C
           </p>
         </div>
