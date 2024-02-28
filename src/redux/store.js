@@ -1,4 +1,4 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import {configureStore } from '@reduxjs/toolkit';
 import {
   persistReducer,
   persistStore,
@@ -11,20 +11,18 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { cityReducer } from './City/citySlice';
-
-const rootReducer = combineReducers({
-  city: cityReducer,
-});
+import { weatherReducer } from './Weather/weatherSlice';
 
 const persistConfig = {
   key: 'root',
   storage,
 };
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer: {
+    city: persistReducer(persistConfig, cityReducer),
+    weather: weatherReducer,
+  },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {

@@ -1,13 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://65d9cf4fbcc50200fcdc2511.mockapi.io';
+const API_URL = import.meta.env.VITE_API_TRIP_URL;
 
 export const fetchCities = createAsyncThunk(
   'cities/fetchCities',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios('/api/cities/Cities');
+      const response = await axios(`${API_URL}/Cities`);
       return response.data;
     } catch (error) {
       return rejectWithValue(error);
@@ -19,7 +19,7 @@ export const addTrip = createAsyncThunk(
   'cities/addTrip',
   async (requestBody, { rejectWithValue }) => {
     try {
-      const response = await axios.post('/api/cities/trip', requestBody);
+      const response = await axios.post(`${API_URL}/trip`, requestBody);
       return response.data;
     } catch (error) {
       return rejectWithValue(error);
@@ -31,7 +31,7 @@ export const fetchAllTrip = createAsyncThunk(
   'cities/fetchAllTrip',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios('/api/cities/trip');
+      const response = await axios(`${API_URL}/trip`);
       return response.data;
     } catch (error) {
       return rejectWithValue(error);

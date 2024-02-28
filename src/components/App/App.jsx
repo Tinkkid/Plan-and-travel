@@ -9,6 +9,7 @@ import Modal from '../Modal/Modal';
 import Button from '../Button/Button';
 import FormTrip from '../FormTrip/FormTrip';
 import style from './App.module.css'
+import WeatherWidget from '../WeatherWidget/WeatherWidget';
 
 function App() {
   const dispatch = useDispatch()
@@ -36,7 +37,7 @@ function App() {
           selectedTrip={selectedTrip}
         />
         <Button setModalIsOpen={setModalIsOpen} />
-        <div>Weather widget</div>
+        <div><WeatherWidget/></div>
       </div>
 
       {modalIsOpen && (

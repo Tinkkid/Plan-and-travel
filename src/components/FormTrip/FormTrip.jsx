@@ -10,7 +10,6 @@ import { formatDateString } from '../../utils';
 const FormTrip = ({ setModalIsOpen }) => {
   const dispatch = useDispatch();
   const [startDate, setStartDate] = useState(null);
-  console.log('TCL: FormTrip -> startDate', startDate);
   const [endDate, setEndDate] = useState(null);
   const [showStartCalendar, setShowStartCalendar] = useState(false);
   const [showEndCalendar, setShowEndCalendar] = useState(false);
