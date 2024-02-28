@@ -1,9 +1,9 @@
 const weatherIcons = {
+  cloudy: '../../assets/WeatherIcons/cloudy.svg',
   fog: '../../assets/WeatherIcons/fog.svg',
   'partly-cloudy-day': '../../assets/WeatherIcons/partly-cloudy-day.svg',
   'clear-day': '../../assets/WeatherIcons/clear-day.svg',
   'clear-night': '../../assets/WeatherIcons/clear-night.svg',
-  cloudy: '../../assets/WeatherIcons/cloudy.svg',
   hail: '../../assets/WeatherIcons/hail.svg',
   'partly-cloudy-night': '../../assets/WeatherIcons/partly-cloudy-night.svg',
   'rain-snow-showers-day':

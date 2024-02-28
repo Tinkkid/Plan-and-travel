@@ -6,12 +6,20 @@
    background-color:#EFF8FF;
    border: 1px solid #C6CACD;
   border-radius: 4px;
+      justify-content: center;
 }
 
 .widgetWeatherWrapper{
    display: flex;
    flex-direction: column;
    justify-content: center;
+   align-items: center;
+}
+
+.widgetTemperatureAndIcon {
+   display:flex;
+   align-items:center;
+   gap: 15px;
 }
 
 .widgetDay {
@@ -20,7 +28,9 @@ font-weight:500;
 }
 
 .widgetTemperature{
-font-size: 24px;
+   position:relative;
+font-size: 46px;
+font-weight:500;
 }
 
 .widgetCity{
@@ -28,6 +38,13 @@ font-size:18px;
 }
 
 .weatherIcon {
-   width: 30px;
-   height: 30px;
+width: 60px;
+    height: 60px;
+}
+
+.widgetCelsius {
+   position:absolute;
+   top: 12px;
+    left: 30px;
+    font-size: 20px;
 }

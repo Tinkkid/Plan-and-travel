@@ -4,7 +4,7 @@ import { selectWeatherData } from '../../redux/Weather/weatherSlice';
 import { fetchCurrentWeather } from '../../redux/Weather/weatherOperations';
 import style from './WeatherWidget.module.css';
 import { getFullNameOfCurrentDay } from '../../utils';
-import weatherIcons from '../../constans/weatherIcons'; 
+import weatherIcons from '../../constans/weatherIcons';
 
 const WeatherWidget = () => {
   const dispatch = useDispatch();
@@ -22,8 +22,12 @@ const WeatherWidget = () => {
       if (weatherIcon) {
         const iconPath = weatherIcons[weatherIcon];
         if (iconPath) {
-          const icon = await import(iconPath); 
+          const icon = await import(iconPath);
           setIconSrc(icon.default);
+        }
+        if (!iconPath) {
+          const defaultIconKey = Object.keys(weatherIcons)[0];
+          iconPath = weatherIcons[defaultIconKey];
         }
       }
     };
@@ -38,14 +42,23 @@ const WeatherWidget = () => {
   return (
     <div className={style.widgetWrapper}>
       <div className={style.widgetWeatherWrapper}>
-        {iconSrc && (
-          <img src={iconSrc} alt={weatherIcon} className={style.weatherIcon} />
-        )}
         <p className={style.widgetDay}>{currentNameOfDay}</p>
-        <p className={style.widgetTemperature}>{roundedTemp}</p>
+        <div className={style.widgetTemperatureAndIcon}>
+          {iconSrc && (
+            <img
+              src={iconSrc}
+              alt={weatherIcon}
+              className={style.weatherIcon}
+            />
+          )}
+          <p className={style.widgetTemperature}>
+            <span className={style.widgetCelsius}>°C</span>
+            {roundedTemp}
+          </p>
+        </div>
         <p className={style.widgetCity}></p>
+        <div>Count</div>
       </div>
-      <div>Count</div>
     </div>
   );
 };

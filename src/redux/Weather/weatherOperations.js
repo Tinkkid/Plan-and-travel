@@ -1,8 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// const API_KEY = import.meta.env.VITE_API_KEY_WEATHER;
-const API_KEY = 'UXCQQCQAN6GTHLZE365XSJ5AP';
+const API_KEY = import.meta.env.VITE_API_KEY_WEATHER;
 const API_URL = import.meta.env.VITE_API_WEATHER_URL;
 
 export const fetchCurrentWeather = createAsyncThunk(
