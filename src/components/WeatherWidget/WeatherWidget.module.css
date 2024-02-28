@@ -1,6 +1,6 @@
 .widgetWrapper {
    width: 300px;
-   height: 600px;
+   height: 400px;
    display: flex;
    flex-direction: column;
    background-color:#EFF8FF;

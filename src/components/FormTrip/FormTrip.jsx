@@ -16,6 +16,7 @@ const FormTrip = ({ setModalIsOpen }) => {
   const [showCities, setShowCities] = useState(false);
   const [selectedCity, setSelectedCity] = useState(null);
   const [photoCity, setPhotoCity] = useState('');
+  const [cityAddress, setCityAddrress] = useState('')
   const [errorMessageCity, setErrorMessageCity] = useState('');
   const cities = useSelector(selectCities);
 
@@ -47,6 +48,7 @@ const FormTrip = ({ setModalIsOpen }) => {
     setSelectedCity(city.city);
     setPhotoCity(city.url);
     setShowCities(false);
+    setCityAddrress(city.address);
   };
 
   const formattedStartDate = formatDateString(startDate);
@@ -62,10 +64,11 @@ const FormTrip = ({ setModalIsOpen }) => {
       setErrorMessageCity('great!');
     }
     const requestBody = {
-      city: selectedCity,
+      city: cityAddress,
       startDate: formattedStartDate,
       endDate: formattedEndDate,
       photo: photoCity,
+      startDateNonFormatted: startDate,
     };
     try {
       dispatch(addTrip(requestBody));

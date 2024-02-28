@@ -5,6 +5,7 @@ import { fetchCurrentWeather } from '../../redux/Weather/weatherOperations';
 import style from './WeatherWidget.module.css';
 import { getFullNameOfCurrentDay } from '../../utils';
 import weatherIcons from '../../constans/weatherIcons';
+import CountdownTimer from '../CountdownTimer/CountdownTimer';
 
 const WeatherWidget = ({ currentTrip, selectedTrip }) => {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const WeatherWidget = ({ currentTrip, selectedTrip }) => {
 
   console.log('TCL: WeatherWidget ->selectedTrip ', selectedTrip);
 
-  console.log('TCL: WeatherWidget -> currentTrip', currentTrip);
+  console.log('TCL: WeatherWidget -> currentTrip', currentTrip.startDate);
 
   useEffect(() => {
     let defaultCity = 'Kyiv';
@@ -47,7 +48,7 @@ const WeatherWidget = ({ currentTrip, selectedTrip }) => {
   const firstDayTemp = currentWeather?.days[0].temp;
   const roundedTemp = Math.round(firstDayTemp);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div className={style.widgetWrapper}>Loading...</div>;
 
   return (
     <div className={style.widgetWrapper}>
@@ -66,8 +67,8 @@ const WeatherWidget = ({ currentTrip, selectedTrip }) => {
             {roundedTemp}
           </p>
         </div>
-        <p className={style.widgetCity}>{currentWeather.address}</p>
-        <div>Count</div>
+        <p className={style.widgetCity}>{currentWeather?.address}</p>
+        <CountdownTimer startDate={currentTrip.startDate} />
       </div>
     </div>
   );
