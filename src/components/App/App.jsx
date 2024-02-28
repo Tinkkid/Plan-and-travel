@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { selectAlltrips, selectCities, selectTrip } from '../../redux/City/citySlice';
+import { selectCities, selectTrip } from '../../redux/City/citySlice';
 import Header from '../Header/Header';
 import SearchTrip from '../SearchTrip/SearchTrip';
 import { useEffect, useState } from 'react';
-import { fetchAllTrip, fetchCities } from '../../redux/City/cityOperations';
+import { fetchCities } from '../../redux/City/cityOperations';
 import TripCard from '../TripCard/TripCard';
 import Modal from '../Modal/Modal';
 import Button from '../Button/Button';
@@ -18,12 +18,12 @@ function App() {
   const newTripAdded = useSelector(selectTrip);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedTrip, setSelectedTrip] = useState('');
+  const [currentTrip, setCurrentTrip] = useState('')
 
   useEffect(() => {
     dispatch(fetchCities());
   }, [dispatch])
   
-
   return (
     <>
       <Header />
@@ -31,19 +31,24 @@ function App() {
         <SearchTrip
           newTripAdded={newTripAdded}
           setSelectedTrip={setSelectedTrip}
+          setCurrentTrip={setCurrentTrip}
         />
         <div className={style.containerTripAndWidget}>
           <TripCard
             cities={cities}
             newTripAdded={newTripAdded}
             selectedTrip={selectedTrip}
+            setCurrentTrip={setCurrentTrip}
           />
           <Button setModalIsOpen={setModalIsOpen} />
           <div>
-            <WeatherWidget />
+            <WeatherWidget
+              currentTrip={currentTrip}
+              selectedTrip={selectedTrip}
+            />
           </div>
         </div>
-        <Forecast />
+        <Forecast currentTrip={currentTrip} selectedTrip={selectedTrip} />
       </div>
 
       {modalIsOpen && (

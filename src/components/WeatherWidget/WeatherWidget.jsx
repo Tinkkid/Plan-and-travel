@@ -6,16 +6,26 @@ import style from './WeatherWidget.module.css';
 import { getFullNameOfCurrentDay } from '../../utils';
 import weatherIcons from '../../constans/weatherIcons';
 
-const WeatherWidget = () => {
+const WeatherWidget = ({ currentTrip, selectedTrip }) => {
   const dispatch = useDispatch();
   const { currentWeather, loading, error } = useSelector(selectWeatherData);
   const currentNameOfDay = getFullNameOfCurrentDay();
   const weatherIcon = currentWeather?.days[0].icon;
   const [iconSrc, setIconSrc] = useState(null);
 
+  console.log('TCL: WeatherWidget ->selectedTrip ', selectedTrip);
+
+  console.log('TCL: WeatherWidget -> currentTrip', currentTrip);
+
   useEffect(() => {
-    dispatch(fetchCurrentWeather('Rivne'));
-  }, [dispatch]);
+    let defaultCity = 'Kyiv';
+    if (selectedTrip && selectedTrip.city) {
+      defaultCity = selectedTrip.city;
+    } else if (currentTrip && currentTrip.city) {
+      defaultCity = currentTrip.city;
+    }
+    dispatch(fetchCurrentWeather(defaultCity));
+  }, [dispatch, currentTrip, selectedTrip]);
 
   useEffect(() => {
     const fetchIcon = async () => {
@@ -56,7 +66,7 @@ const WeatherWidget = () => {
             {roundedTemp}
           </p>
         </div>
-        <p className={style.widgetCity}></p>
+        <p className={style.widgetCity}>{currentWeather.address}</p>
         <div>Count</div>
       </div>
     </div>

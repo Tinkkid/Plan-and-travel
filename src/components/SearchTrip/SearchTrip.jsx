@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { fetchAllTrip } from '../../redux/City/cityOperations';
 import style from './SearchTrip.module.css';
 
-const SearchTrip = ({ newTripAdded, setSelectedTrip }) => {
+const SearchTrip = ({ newTripAdded, setSelectedTrip, setCurrentTrip }) => {
   const dispatch = useDispatch();
   const trips = useSelector(selectAlltrips);
   const [searchingTrip, setSearchingTrip] = useState('');
@@ -36,6 +36,7 @@ const SearchTrip = ({ newTripAdded, setSelectedTrip }) => {
       setSelectedTrip(selectedCity);
       setSearchingTrip(selectedCity.city);
       setShowFiltredTrip(false);
+      setCurrentTrip(null);
     } else {
       console.log('Вибране місто не знайдено в списку');
     }
@@ -50,7 +51,8 @@ const SearchTrip = ({ newTripAdded, setSelectedTrip }) => {
   const removeTrip = () => {
     setSearchingTrip('');
     setSelectedTrip('');
-  }
+    setCurrentTrip(null);
+  };
 
   return (
     <div className={style.container}>

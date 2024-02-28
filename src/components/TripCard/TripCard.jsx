@@ -5,7 +5,7 @@ import { selectAlltrips, selectTrip } from '../../redux/City/citySlice';
 import { fetchAllTrip } from '../../redux/City/cityOperations';
 import Spinner from '../Spinner/Spinner';
 
-const TripCard = ({ newTripAdded, selectedTrip }) => {
+const TripCard = ({ newTripAdded, selectedTrip, setCurrentTrip }) => {
   const dispatch = useDispatch();
   const trips = useSelector(selectAlltrips);
   const [loading, setLoading] = useState(false);
@@ -13,8 +13,6 @@ const TripCard = ({ newTripAdded, selectedTrip }) => {
   useEffect(() => {
     dispatch(fetchAllTrip());
   }, [dispatch, newTripAdded]);
-
-  
 
   const sortedTrips = trips.slice().sort((a, b) => {
     if (a.city === 'Kyiv') return -1;
@@ -26,11 +24,20 @@ const TripCard = ({ newTripAdded, selectedTrip }) => {
     setLoading(true);
   };
 
+   const handleTripSelected = trip => {
+     setCurrentTrip(trip);
+   };
+
   return (
     <section className={style.wrapper}>
-      {trips && !selectedTrip &&
+      {trips &&
+        !selectedTrip &&
         sortedTrips.map(item => (
-          <div key={item.id} className={style.tripContainer}>
+          <div
+            key={item.id}
+            className={style.tripContainer}
+            onClick={()=>handleTripSelected(item)}
+          >
             {!loading && <Spinner />}
             <div style={{ display: loading ? 'block' : 'none' }}>
               <img

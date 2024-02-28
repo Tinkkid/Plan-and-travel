@@ -12,6 +12,7 @@
 }
 
 .tripContainer {
+  cursor:pointer;
   border-radius: 2px;
   border: 1px solid #c6cacd;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px,
