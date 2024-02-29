@@ -10,7 +10,6 @@ const Forecast = ({ currentTrip, selectedTrip }) => {
   const dispatch = useDispatch();
   const { loading, error, forecast } = useSelector(selectWeatherData);
   const [iconsSrc, setIconsSrc] = useState({});
-  console.log("TCL: Forecast -> iconsSrc", iconsSrc)
 
   const today = new Date();
   const nextWeek = new Date(today);
@@ -48,12 +47,11 @@ const Forecast = ({ currentTrip, selectedTrip }) => {
         const icons = {};
         await Promise.all(
           forecast.days.map(async (day, index) => {
-            const iconPath = weatherIcons[day.icon];
-            if (!iconPath) {
-              const defaultIconKey = Object.keys(weatherIcons)[0];
+            let iconPath = weatherIcons[day.icon];
+             const defaultIconKey = Object.keys(weatherIcons)[0];
+            if (!iconPath) {            
               iconPath = weatherIcons[defaultIconKey];
             }
-
             if (iconPath) {
               const icon = await import(iconPath);
               icons[index] = icon.default;
@@ -73,10 +71,17 @@ const Forecast = ({ currentTrip, selectedTrip }) => {
         forecast.days.map((day, index) => (
           <ul key={index} className={style.temperatureList}>
             <li>
-              <div className={style.forecastNameOdDay}>{getDayOfWeek(day.datetime)}</div>
+              <div className={style.forecastNameOdDay}>
+                {getDayOfWeek(day.datetime)}
+              </div>
               <div>
                 {iconsSrc[index] && (
-                  <img src={iconsSrc[index]} alt={day.icon} className={style.forecastIcon} />
+                  <img
+                    src={iconsSrc[index]}
+                    alt={day.icon}
+                    type="image/svg+xml"
+                    className={style.forecastIcon}
+                  />
                 )}
               </div>
               <div className={style.forecastTemperature}>

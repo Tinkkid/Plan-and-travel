@@ -11,7 +11,7 @@ const WeatherWidget = ({ currentTrip, selectedTrip }) => {
   const dispatch = useDispatch();
   const { currentWeather, loading, error } = useSelector(selectWeatherData);
   const currentNameOfDay = getFullNameOfCurrentDay();
-  const weatherIcon = currentWeather?.days[0].icon;
+  let weatherIcon = currentWeather?.days[0].icon;
   const [iconSrc, setIconSrc] = useState(null);
 
   useEffect(() => {
@@ -79,6 +79,7 @@ const WeatherWidget = ({ currentTrip, selectedTrip }) => {
               src={iconSrc}
               alt={weatherIcon}
               className={style.weatherIcon}
+              type="image/svg+xml"
             />
           )}
           <p className={style.widgetTemperature}>{roundedTemp}&deg;C</p>
