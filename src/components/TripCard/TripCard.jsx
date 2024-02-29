@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux';
+
 import style from './TripCard.module.css'
-import { useDispatch, useSelector } from 'react-redux';
-import { selectAlltrips, selectTrip } from '../../redux/City/citySlice';
 import { fetchAllTrip } from '../../redux/City/cityOperations';
 import Spinner from '../Spinner/Spinner';
 
@@ -10,20 +10,15 @@ const TripCard = ({
   selectedTrip,
   setCurrentTrip,
   currentTrip,
+  trips,
+  sortedTrips,
 }) => {
   const dispatch = useDispatch();
-  const trips = useSelector(selectAlltrips);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     dispatch(fetchAllTrip());
   }, [dispatch, newTripAdded]);
-
-  const sortedTrips = trips.slice().sort((a, b) => {
-    if (a.city === 'Kyiv') return -1;
-    if (b.city === 'Kyiv') return 1;
-    return 0;
-  });
 
   const loadImage = () => {
     setLoading(true);

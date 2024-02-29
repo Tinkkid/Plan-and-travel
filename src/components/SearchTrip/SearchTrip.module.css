@@ -7,7 +7,7 @@
   width: 100%;
   max-width: 280px;
   border: 1px solid #c6cacd;
-  background-color: #d1e9ff;
+  background-color: #EFF8FF;
   border-radius: 4px;
   overflow: hidden;
 }
@@ -18,7 +18,7 @@
   width: 100%;
   font-size: 16px;
   border: transparent;
-  background-color: #d1e9ff;
+  background-color: #EFF8FF;
   transition: background-color 0.3s ease; 
 }
 
@@ -29,7 +29,7 @@
 .inputContent:focus,
 .inputContent:hover {
   outline: none;
-   background-color: #EFF8FF;
+   background-color: #d1e9ff;
 }
 
 .cityList {

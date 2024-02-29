@@ -1,0 +1,30 @@
+.closeBtn {
+  height: 40px;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px;
+  border: 1px solid #c6cacd;
+  border-radius: 4px;
+  background-color: #eff8ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.closeBtn:hover,
+.closeBtn:focus {
+  outline: none;
+  background-color: #d1e9ff;
+}
+
+.closeBtn:hover ion-icon {
+  color: #007bff;
+}
+
+.closeBtn ion-icon {
+  width: 20px;
+  height: 20px;
+}

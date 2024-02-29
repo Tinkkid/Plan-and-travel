@@ -55,12 +55,6 @@ const SearchTrip = ({
     setShowFiltredTrip(false);
   };
 
-  // const removeTrip = () => {
-  //   setSearchingTrip('');
-  //   setSelectedTrip('');
-  //   setCurrentTrip(null);
-  // };
-
   return (
     <div className={style.container}>
       <form onSubmit={handleSubmitSearch} className={style.formWrapper}>

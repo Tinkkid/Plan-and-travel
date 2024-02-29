@@ -1,0 +1,14 @@
+.sortDropdown {
+   padding: 10px;
+   border: 1px solid #c6cacd;
+   border-radius: 4px;
+   background-color: #EFF8FF;
+   cursor: pointer;
+   margin-bottom: 20px;
+}
+
+.sortDropdown:focus,
+.sortDropdown:hover {
+  outline: none;
+  background-color: #d1e9ff;
+}
