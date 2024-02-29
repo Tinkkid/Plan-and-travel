@@ -30,8 +30,7 @@
 ## API info
 1. [Mockapi.io](https://mockapi.io/) - for getting a list of cities, storing and retrieving trips.
 
-2. [Timeline Weather API](https://www.visualcrossing.com/resources/documentation/weather-api/timeline-weather-api/) -  to get the current weather for a specific city and to get a forecast for a certain period of time.
-
+2. [Timeline Weather API](https://www.visualcrossing.com/resources/documentation/weather-api/timeline-weather-api/) -    to get the current weather for a specific city and to get a forecast for a certain period of time.
 
 ## Getting Started
 
