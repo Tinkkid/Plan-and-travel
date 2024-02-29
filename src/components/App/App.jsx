@@ -64,62 +64,69 @@ function App() {
 
   return (
     <>
-      <Header />
-      <div className={style.container}>
-        <div className={style.containerTripAndWidget}>
-          <div className={style.containerSearchTripBtn}>
-            <div>
-              <SearchTrip
-                newTripAdded={newTripAdded}
-                setSelectedTrip={setSelectedTrip}
-                setCurrentTrip={setCurrentTrip}
-                searchingTrip={searchingTrip}
-                setSearchingTrip={setSearchingTrip}
-                removeTrip={removeTrip}
-              />
-              <div className={style.sortAndChips}>
-                <SortingFilter
-                  handleChangeSortBy={handleChangeSortBy}
-                  sortBy={sortBy}
+      <div className={style.mainContainer}>
+        <Header />
+        <div className={style.container}>
+          <div className={style.containerTripAndWidget}>
+            <div className={style.containerSearchTripBtn}>
+              <div>
+                <SearchTrip
+                  newTripAdded={newTripAdded}
+                  setSelectedTrip={setSelectedTrip}
+                  setCurrentTrip={setCurrentTrip}
+                  searchingTrip={searchingTrip}
+                  setSearchingTrip={setSearchingTrip}
+                  removeTrip={removeTrip}
                 />
-                {selectedTrip && (
-                  <Chips removeTrip={removeTrip} selectedTrip={selectedTrip} />
-                )}
+                <div className={style.sortAndChips}>
+                  <SortingFilter
+                    handleChangeSortBy={handleChangeSortBy}
+                    sortBy={sortBy}
+                  />
+                  {selectedTrip && (
+                    <Chips
+                      removeTrip={removeTrip}
+                      selectedTrip={selectedTrip}
+                    />
+                  )}
+                </div>
+              </div>
+              <div className={style.containerTripAndAddBtn}>
+                <TripCard
+                  cities={cities}
+                  trips={trips}
+                  selectedTrip={selectedTrip}
+                  setCurrentTrip={setCurrentTrip}
+                  currentTrip={currentTrip}
+                  setSortedTrips={setSortedTrips}
+                  sortedTrips={sortedTrips}
+                  removeTrip={removeTrip}
+                />
+                <Button
+                  setModalIsOpen={setModalIsOpen}
+                  removeTrip={removeTrip}
+                />
               </div>
             </div>
-            <div className={style.containerTripAndAddBtn}>
-              <TripCard
-                cities={cities}
-                trips={trips}
-                selectedTrip={selectedTrip}
-                setCurrentTrip={setCurrentTrip}
+
+            <div>
+              <WeatherWidget
                 currentTrip={currentTrip}
-                setSortedTrips={setSortedTrips}
-                sortedTrips={sortedTrips}
-                removeTrip={removeTrip}
+                selectedTrip={selectedTrip}
               />
-              <Button setModalIsOpen={setModalIsOpen} removeTrip={removeTrip} />
             </div>
           </div>
-
           <div>
-            <WeatherWidget
-              currentTrip={currentTrip}
-              selectedTrip={selectedTrip}
-            />
+            <Forecast currentTrip={currentTrip} selectedTrip={selectedTrip} />
           </div>
         </div>
-        <div>
-          <Forecast currentTrip={currentTrip} selectedTrip={selectedTrip} />
-        </div>
-        <Footer/>
+        <Footer />
+        {modalIsOpen && (
+          <Modal onClose={() => setModalIsOpen(false)} isOpen={modalIsOpen}>
+            <FormTrip setModalIsOpen={setModalIsOpen} />
+          </Modal>
+        )}
       </div>
-
-      {modalIsOpen && (
-        <Modal onClose={() => setModalIsOpen(false)} isOpen={modalIsOpen}>
-          <FormTrip setModalIsOpen={setModalIsOpen} />
-        </Modal>
-      )}
     </>
   );
 }

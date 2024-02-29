@@ -1,24 +1,39 @@
+.mainContainer {
+  display: flex;
+  flex-direction:column;
+  height: 100vh;
+}
+
 .container {
-   padding:0 80px;
+  padding: 0 40px;
 }
 
 .containerTripAndWidget {
-   display: flex;
-   justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
 
 .containerSearchTripBtn {
-   display:felx;
-   flex-direction: column;
+  display: felx;
+  flex-direction: column;
 }
 
 .containerTripAndAddBtn {
-   display:flex;
-   gap:10px;
+  display: flex;
+  gap: 10px;
+
+  @media screen and (max-width: 700px) {
+    flex-direction: column;
+    gap: 10px;
+  }
 }
 
-
 .sortAndChips {
-   display: flex;
-   gap: 10px;
+  display: flex;
+  gap: 10px;
 }
