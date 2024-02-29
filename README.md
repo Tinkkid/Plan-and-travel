@@ -1,10 +1,10 @@
-# ![Image alt](./public/ukraine.png) Plan a trip and discover Ukraine!
+# <img src="./public/ukraine.png" alt="Image alt" width="60px"> Plan a trip and discover Ukraine!
 
 ## Description:
 **Trip&Weather** application allows to add trips by choosing the city of Ukraine, as well as the start and end date of the trip.
 
 <span>
-<img src="./public/screen.png" width="400" height="400" title="welcome">
+<img src="./public/screen.png" width="400" height="100%" title="welcome">
 </span>
 
 ### Features:
