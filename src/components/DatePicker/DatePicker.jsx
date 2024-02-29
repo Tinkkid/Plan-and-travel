@@ -6,7 +6,8 @@ import { getNumbersOfDaysInMoth, getSortedDays, range } from '../../utils';
 const DatePicker = ({
   selectedDate,
   handleDateChange,
-  refContent
+  refContent,
+   startDate
 }) => {
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
@@ -57,7 +58,11 @@ const DatePicker = ({
     if (date.getTime() === today.getTime()) {
       return false;
     } else {
-      return date < today || date > lastSelectableDate;
+      return (
+        (startDate && date <= startDate) ||
+        date < today ||
+        date > lastSelectableDate
+      );
     }
   };
 

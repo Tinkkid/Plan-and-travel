@@ -39,8 +39,8 @@
   cursor: pointer;
   padding: 5px;
   text-align: center;
-  font-weight: 500;
-  transition: background-color 0.3s ease; 
+  font-weight: 600;
+  transition: background-color 0.3s ease;
 }
 
 .calendarDate:hover {

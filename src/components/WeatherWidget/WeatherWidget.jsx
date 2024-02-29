@@ -20,10 +20,10 @@ const WeatherWidget = ({ currentTrip, selectedTrip }) => {
 
   useEffect(() => {
     let defaultCity = 'Kyiv';
-    if (selectedTrip && selectedTrip.city) {
-      defaultCity = selectedTrip.city;
-    } else if (currentTrip && currentTrip.city) {
-      defaultCity = currentTrip.city;
+    if (selectedTrip && selectedTrip.cityForWeather) {
+      defaultCity = selectedTrip.cityForWeather;
+    } else if (currentTrip && currentTrip.cityForWeather) {
+      defaultCity = currentTrip.cityForWeather;
     }
     dispatch(fetchCurrentWeather(defaultCity));
   }, [dispatch, currentTrip, selectedTrip]);
@@ -50,6 +50,16 @@ const WeatherWidget = ({ currentTrip, selectedTrip }) => {
 
   if (loading) return <div className={style.widgetWrapper}>Loading...</div>;
 
+   const getNameOfCity = () => {
+     if (currentTrip) {
+       return currentTrip.city;
+     } else if (selectedTrip) {
+       return selectedTrip.city;
+     } else {
+       return null;
+     }
+   };
+
   const getStartDate = () => {
     if (currentTrip) {
       return currentTrip.startDate;
@@ -61,6 +71,7 @@ const WeatherWidget = ({ currentTrip, selectedTrip }) => {
   };
 
   const startDate = getStartDate();
+  const nameOfCity = getNameOfCity();
 
   return (
     <div className={style.widgetWrapper}>
@@ -74,11 +85,9 @@ const WeatherWidget = ({ currentTrip, selectedTrip }) => {
               className={style.weatherIcon}
             />
           )}
-          <p className={style.widgetTemperature}>
-            {roundedTemp}&deg;C
-          </p>
+          <p className={style.widgetTemperature}>{roundedTemp}&deg;C</p>
         </div>
-        <p className={style.widgetCity}>{currentWeather?.address}</p>
+        <p className={style.widgetCity}>{nameOfCity}</p>
         <CountdownTimer startDate={startDate} />
       </div>
     </div>

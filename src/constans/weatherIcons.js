@@ -14,14 +14,15 @@ const weatherIcons = {
   rain: '../../assets/WeatherIcons/rain.svg',
   'showers-day': '../../assets/WeatherIcons/showers-night.svg',
   sleet: '../../assets/WeatherIcons/sleet.svg',
-  'snow-showers-day': './../assets/WeatherIcons/snow-showers-day.svg',
-  'snow-showers-night': './../assets/WeatherIcons/snow-showers-night.svg',
-  snow: './../assets/WeatherIcons/snow.svg',
-  'thunder-rain': './../assets/WeatherIcons/thunder-rain.svg',
-  'thunder-showers-day': './../assets/WeatherIcons/thunder-showers-day.svg',
-  'thunder-showers-night': './../assets/WeatherIcons/thunder-showers-night.svg',
-  thunder: './../assets/WeatherIcons/thunder.svg',
-  wind: '/wind.svg',
+  'snow-showers-day': '../../assets/WeatherIcons/snow-showers-day.svg',
+  'snow-showers-night': '../../assets/WeatherIcons/snow-showers-night.svg',
+  snow: '../../assets/WeatherIcons/snow.svg',
+  'thunder-rain': '../../assets/WeatherIcons/thunder-rain.svg',
+  'thunder-showers-day': '../../assets/WeatherIcons/thunder-showers-day.svg',
+  'thunder-showers-night':
+    '../../assets/WeatherIcons/thunder-showers-night.svg',
+  thunder: '../../assets/WeatherIcons/thunder.svg',
+  wind: '../../assets/WeatherIcons/wind.svg',
 };
 
 export default weatherIcons;

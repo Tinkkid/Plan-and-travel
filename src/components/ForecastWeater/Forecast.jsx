@@ -9,6 +9,7 @@ import { formatDate, formatDateDefalult, getDayOfWeek } from '../../utils';
 const Forecast = ({ currentTrip, selectedTrip }) => {
   const dispatch = useDispatch();
   const { loading, error, forecast } = useSelector(selectWeatherData);
+  console.log("TCL: Forecast -> forecast", forecast)
   const [iconsSrc, setIconsSrc] = useState({});
 
   const today = new Date();
@@ -24,11 +25,11 @@ const Forecast = ({ currentTrip, selectedTrip }) => {
       let defaultEndDate = formattedNextWeek;
         
       if (selectedTrip) {
-         defaultCity = selectedTrip.city;
+         defaultCity = selectedTrip.cityForWeather;
          defaultStartDate = formatDate(selectedTrip.startDate)
          defaultEndDate = formatDate(selectedTrip.endDate);
       } else if (currentTrip) {
-          defaultCity = currentTrip.city;
+          defaultCity = currentTrip.cityForWeather;
            defaultStartDate = formatDate(currentTrip.startDate);
            defaultEndDate = formatDate(currentTrip.endDate);
       }  

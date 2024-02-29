@@ -1,12 +1,12 @@
 .wrapper {
-   padding: 20px 30px;
-   text-align:center;
-   background-color: #80BDE3;
-   margin-bottom: 70px;
+  padding: 20px 30px;
+  text-align: center;
+  background-color: #80bde3;
+  margin-bottom: 50px;
 }
 
 .title {
-   font-size: 26px;
-   font-weight: 500;
-   margin-bottom: 10px;
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 10px;
 }

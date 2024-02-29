@@ -1,5 +1,5 @@
 .container {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 .formWrapper {
   display: flex;
@@ -36,7 +36,7 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  top: 214px;
+  top: 195px;
   width: 280px;
   overflow-y: scroll;
   max-height: 120px;

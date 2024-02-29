@@ -17,6 +17,7 @@ const FormTrip = ({ setModalIsOpen, selectedTrip }) => {
   const [selectedCity, setSelectedCity] = useState(null);
   const [photoCity, setPhotoCity] = useState('');
   const [cityAddress, setCityAddrress] = useState('');
+  const [cityForWeather, setcityForWeather] = useState();
   const [errorMessageCity, setErrorMessageCity] = useState('');
   const [errorMessageStartDate, setErrorMessageStartDate] = useState('');
   const [errorMessageEndDate, setErrorMessageEndDate] = useState('');
@@ -54,6 +55,7 @@ const FormTrip = ({ setModalIsOpen, selectedTrip }) => {
     setPhotoCity(city.url);
     setShowCities(false);
     setCityAddrress(city.city);
+    setcityForWeather(city.address);
   };
 
   const formattedStartDate = formatDateString(startDate);
@@ -80,6 +82,7 @@ const FormTrip = ({ setModalIsOpen, selectedTrip }) => {
       startDate: formattedStartDate,
       endDate: formattedEndDate,
       photo: photoCity,
+      cityForWeather: cityForWeather,
       startDateNonFormatted: startDate,
     };
     try {
@@ -166,6 +169,7 @@ const FormTrip = ({ setModalIsOpen, selectedTrip }) => {
                   selectedDate={startDate}
                   handleDateChange={handleStartDateChange}
                   refContent={refContent}
+                  startDate={startDate}
                 />
               )}
             </div>
@@ -199,6 +203,7 @@ const FormTrip = ({ setModalIsOpen, selectedTrip }) => {
                   selectedDate={endDate}
                   handleDateChange={handleEndDateChange}
                   refContent={refContent}
+                  startDate={startDate}
                 />
               )}
             </div>
