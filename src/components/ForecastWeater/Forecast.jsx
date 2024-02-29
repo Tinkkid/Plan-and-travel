@@ -9,7 +9,6 @@ import { formatDate, formatDateDefalult, getDayOfWeek } from '../../utils';
 const Forecast = ({ currentTrip, selectedTrip }) => {
   const dispatch = useDispatch();
   const { loading, error, forecast } = useSelector(selectWeatherData);
-  console.log("TCL: Forecast -> forecast", forecast)
   const [iconsSrc, setIconsSrc] = useState({});
 
   const today = new Date();

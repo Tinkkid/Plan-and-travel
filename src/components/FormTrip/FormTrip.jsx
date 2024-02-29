@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+
 import style from './FormTrip.module.css';
 import DatePicker from '../DatePicker/DatePicker';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,7 +8,7 @@ import { selectCities } from '../../redux/City/citySlice';
 import { useOutsideClick } from '../../hooks/useOutsideClick';
 import { formatDateString } from '../../utils';
 
-const FormTrip = ({ setModalIsOpen, selectedTrip }) => {
+const FormTrip = ({ setModalIsOpen }) => {
   const dispatch = useDispatch();
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
@@ -29,7 +30,7 @@ const FormTrip = ({ setModalIsOpen, selectedTrip }) => {
   const closeOptions = () => {
     setShowStartCalendar(false);
     setShowEndCalendar(false);
-    setShowCities(false);
+    setShowCities(!showCities);
   };
   useOutsideClick(refContent, refSelect, closeOptions);
 
@@ -83,7 +84,7 @@ const FormTrip = ({ setModalIsOpen, selectedTrip }) => {
       endDate: formattedEndDate,
       photo: photoCity,
       cityForWeather: cityForWeather,
-      startDateNonFormatted: startDate,
+      startDateNonFormatted: startDate
     };
     try {
       dispatch(addTrip(requestBody));
@@ -107,14 +108,13 @@ const FormTrip = ({ setModalIsOpen, selectedTrip }) => {
     <div>
       <form onSubmit={handleSubmit}>
         <div className={style.container}>
-          <div className={style.inputWrapper}>
+          <div className={style.inputWrapper} ref={refSelect}>
             <label className={style.labelTitle}>
               <span className={style.starRequired}>*</span>City
             </label>
             <input
               className={style.inputContent}
               readOnly
-              ref={refSelect}
               placeholder="Please select a city"
               value={selectedCity ? selectedCity : ''}
               onClick={() => {
@@ -123,6 +123,22 @@ const FormTrip = ({ setModalIsOpen, selectedTrip }) => {
                 setShowStartCalendar(false);
               }}
             />
+            {showCities ? (
+              <div className={style.selectIcon} onClick={closeOptions}>
+                <ion-icon name="chevron-up-outline"></ion-icon>
+              </div>
+            ) : (
+              <div
+                className={style.selectIcon}
+                onClick={() => {
+                  setShowCities(true);
+                  setShowEndCalendar(false);
+                  setShowStartCalendar(false);
+                }}
+              >
+                <ion-icon name="chevron-down-outline"></ion-icon>
+              </div>
+            )}
             {errorMessageCity && (
               <p className={style.errorMessage}>{errorMessageCity}</p>
             )}
@@ -160,6 +176,9 @@ const FormTrip = ({ setModalIsOpen, selectedTrip }) => {
                 ref={refSelect}
               >
                 {startDate ? formattedStartDate : 'Select a date'}
+                <div>
+                  <ion-icon name="calendar-clear-outline"></ion-icon>
+                </div>
               </button>
               {errorMessageStartDate && (
                 <p className={style.errorMessage}>{errorMessageStartDate}</p>
@@ -194,6 +213,9 @@ const FormTrip = ({ setModalIsOpen, selectedTrip }) => {
                 ref={refSelect}
               >
                 {endDate ? formattedEndDate : 'Select a date'}
+                <div>
+                  <ion-icon name="calendar-clear-outline"></ion-icon>
+                </div>
               </button>
               {errorMessageEndDate && (
                 <p className={style.errorMessage}>{errorMessageEndDate}</p>

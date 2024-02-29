@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addTrip, fetchAllTrip, fetchCities } from './cityOperations';
+import {
+  addTrip,
+  fetchAllTrip,
+  fetchCities,
+  removeTripById,
+} from './cityOperations';
 
 const handlePending = state => {
   state.isLoading = true;
@@ -30,7 +35,7 @@ const citySlice = createSlice({
       .addCase(addTrip.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.responseTrip = action.payload;
+        state.allTrips.push(action.payload)
       })
       .addCase(fetchAllTrip.rejected, handleRejected)
       .addCase(fetchAllTrip.pending, handlePending)
@@ -38,7 +43,13 @@ const citySlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.allTrips = action.payload;
-      });
+      })
+      .addCase(removeTripById.fulfilled, (state, action) => {
+        
+      const tripId = action.payload; 
+  state.allTrips = state.allTrips.filter(trip => trip.id !== tripId);
+      })
+      
   },
 });
 

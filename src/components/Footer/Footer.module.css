@@ -1,0 +1,17 @@
+.footer {
+  padding: 10px 40px;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  display: flex;
+  gap:4px;
+}
+
+.myLink {
+  color: inherit;
+}
+
+.myLink:hover,
+.myLink:focus {
+  color: #007bff;
+}

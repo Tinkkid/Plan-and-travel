@@ -19,15 +19,25 @@
 }
 
 .inputContent {
+  position:relative;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #c6cacd;
   border-radius: 4px;
   transition: background-color 0.3s ease;
+  cursor:pointer;
 }
 
+.selectIcon {
+position:absolute;
+top: 42px;
+    right: 9px;
+    cursor:pointer;
+}
 .btnContent {
   position: relative;
+  display: flex;
+  justify-content:space-between;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #c6cacd;

@@ -14,10 +14,6 @@ const WeatherWidget = ({ currentTrip, selectedTrip }) => {
   const weatherIcon = currentWeather?.days[0].icon;
   const [iconSrc, setIconSrc] = useState(null);
 
-  console.log('TCL: WeatherWidget ->selectedTrip ', selectedTrip);
-
-  console.log('TCL: WeatherWidget -> currentTrip', currentTrip);
-
   useEffect(() => {
     let defaultCity = 'Kyiv';
     if (selectedTrip && selectedTrip.cityForWeather) {
@@ -56,7 +52,7 @@ const WeatherWidget = ({ currentTrip, selectedTrip }) => {
      } else if (selectedTrip) {
        return selectedTrip.city;
      } else {
-       return null;
+       return 'Kyiv';
      }
    };
 

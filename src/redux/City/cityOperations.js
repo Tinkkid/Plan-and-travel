@@ -38,3 +38,15 @@ export const fetchAllTrip = createAsyncThunk(
     }
   }
 );
+
+export const removeTripById = createAsyncThunk(
+  'cities/removeTripById',
+  async (tripId, { rejectWithValue }) => {
+    try {
+      const response = await axios.delete(`${API_URL}/trip/${tripId}`);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);

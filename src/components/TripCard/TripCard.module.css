@@ -1,8 +1,13 @@
 .wrapper {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  width: 494px;
+   max-height: 236px;
   gap: 10px;
-  width: 50%;
+  padding: 16px;
+  border: 1px solid #c6cacd;
+  border-radius: 4px;
+  overflow:scroll;
 }
 
 .photoCity {
@@ -12,30 +17,71 @@
 }
 
 .tripContainer {
-  cursor:pointer;
+  cursor: pointer;
   border-radius: 2px;
-  width: 150px;
+  width: 154px;
   height: 225px;
   border: 1px solid #c6cacd;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px 0px,
     rgba(0, 0, 0, 0.14) 0px 1px 1px 0px, rgba(0, 0, 0, 0.12) 0px 2px 1px -1px;
 }
-.tripContainer:hover, .tripContainer:focus, .selected {
+.tripContainer:hover,
+.tripContainer:focus,
+.selected {
   border: 1px solid #007bff;
- box-shadow: rgba(0, 0, 255, 0.2) 0px 7px 29px 0px;
+  box-shadow: rgba(0, 0, 255, 0.2) 0px 7px 29px 0px;
+}
+
+.containerCityAndDeleteBtn {
+  display:flex;
+    margin-top: 8px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.deleteBtn {
+   padding: 0;
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color 0.3s ease; 
+}
+
+.deleteBtn:hover ion-icon {
+  color: red;
+}
+
+.deleteBtn ion-icon {
+  width: 20px;
+  height: 20px;
 }
 
 .cityLabel {
   font-size: 14px;
   font-weight: bold;
-  margin-top: 8px;
 }
 
 .tripDate {
- font-size: 10px;
+  font-size: 10px;
   margin: 8px 0;
 }
 
 .contentAboutTrip {
   padding: 0 10px;
+}
+
+.emptyTripContainer {
+  display: flex;
+  gap:5px;
+  align-items: center;
+}
+
+.emptyTripText {
+  font-size: 16px;
+  color: #41464c;
 }
