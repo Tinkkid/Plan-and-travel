@@ -4,7 +4,7 @@ import { selectWeatherData } from '../../redux/Weather/weatherSlice';
 import { fetchCurrentWeather } from '../../redux/Weather/weatherOperations';
 import style from './WeatherWidget.module.css';
 import { getFullNameOfCurrentDay } from '../../utils';
-import weatherIcons from '../../constans/weatherIcons';
+import  { IconsWeather } from '../../constans/weatherIcons';
 import CountdownTimer from '../CountdownTimer/CountdownTimer';
 
 const WeatherWidget = ({ currentTrip, selectedTrip }) => {
@@ -12,7 +12,6 @@ const WeatherWidget = ({ currentTrip, selectedTrip }) => {
   const { currentWeather, loading, error } = useSelector(selectWeatherData);
   const currentNameOfDay = getFullNameOfCurrentDay();
   let weatherIcon = currentWeather?.days[0].icon;
-  const [iconSrc, setIconSrc] = useState(null);
 
   useEffect(() => {
     let defaultCity = 'Kyiv';
@@ -23,24 +22,6 @@ const WeatherWidget = ({ currentTrip, selectedTrip }) => {
     }
     dispatch(fetchCurrentWeather(defaultCity));
   }, [dispatch, currentTrip, selectedTrip]);
-
-  useEffect(() => {
-    const fetchIcon = async () => {
-      if (weatherIcon) {
-        let iconPath = weatherIcons[weatherIcon];
-         const defaultIconKey = Object.keys(weatherIcons)[0];
-        if (iconPath) {
-          const icon = await import(iconPath);
-          setIconSrc(icon.default);
-        }
-        if (!iconPath) {
-         
-          iconPath = weatherIcons[defaultIconKey];
-        }
-      }
-    };
-    fetchIcon();
-  }, [weatherIcon]);
 
   const firstDayTemp = currentWeather?.days[0].temp;
   const roundedTemp = Math.round(firstDayTemp);
@@ -75,14 +56,11 @@ const WeatherWidget = ({ currentTrip, selectedTrip }) => {
       <div className={style.widgetWeatherWrapper}>
         <p className={style.widgetDay}>{currentNameOfDay}</p>
         <div className={style.widgetTemperatureAndIcon}>
-          {iconSrc && (
-            <img
-              src={iconSrc}
-              alt={weatherIcon}
-              className={style.weatherIcon}
-              type="image/svg+xml"
-            />
-          )}
+          <img
+            src={IconsWeather[weatherIcon]}
+            alt={weatherIcon}
+            className={style.weatherIcon}
+          />
           <p className={style.widgetTemperature}>{roundedTemp}&deg;C</p>
         </div>
         <p className={style.widgetCity}>{nameOfCity}</p>
