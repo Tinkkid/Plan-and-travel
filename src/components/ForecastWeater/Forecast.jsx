@@ -10,6 +10,7 @@ const Forecast = ({ currentTrip, selectedTrip }) => {
   const dispatch = useDispatch();
   const { loading, error, forecast } = useSelector(selectWeatherData);
   const [iconsSrc, setIconsSrc] = useState({});
+  console.log("TCL: Forecast -> iconsSrc", iconsSrc)
 
   const today = new Date();
   const nextWeek = new Date(today);
