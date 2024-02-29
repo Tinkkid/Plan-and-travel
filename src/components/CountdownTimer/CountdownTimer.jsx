@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { parse } from 'date-fns';
 import style from './CountdownTimer.module.css'
 
 const CountdownTimer = ({ startDate }) => {
 
- const parseStartDate = startDate ? parse(startDate, 'dd.MM.yyyy', new Date()) : null;
+  const parseStartDate = startDate
+    ? new Date(startDate.split('.').reverse().join('-'))
+    : null;
 
   const calculateTimeLeft = () => {
         if (!parseStartDate) return null;
@@ -20,7 +21,6 @@ const CountdownTimer = ({ startDate }) => {
         seconds: Math.floor((difference / 1000) % 60),
       };
     }
-
     return timeLeft;
   };
 
