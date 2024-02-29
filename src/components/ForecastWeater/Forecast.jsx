@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectWeatherData } from '../../redux/Weather/weatherSlice';
 import { fetchWeatherForecast } from '../../redux/Weather/weatherOperations';
@@ -6,10 +6,9 @@ import style from './Forecast.module.css';
 import { formatDate, formatDateDefalult, getDayOfWeek } from '../../utils';
 import { IconsWeather } from '../../constans/weatherIcons';
 
-
 const Forecast = ({ currentTrip, selectedTrip }) => {
   const dispatch = useDispatch();
-  const { loading, error, forecast } = useSelector(selectWeatherData);
+  const { forecast } = useSelector(selectWeatherData);
 
   const today = new Date();
   const nextWeek = new Date(today);
