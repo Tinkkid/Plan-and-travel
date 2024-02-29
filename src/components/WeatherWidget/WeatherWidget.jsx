@@ -27,13 +27,14 @@ const WeatherWidget = ({ currentTrip, selectedTrip }) => {
   useEffect(() => {
     const fetchIcon = async () => {
       if (weatherIcon) {
-        const iconPath = weatherIcons[weatherIcon];
+        let iconPath = weatherIcons[weatherIcon];
+         const defaultIconKey = Object.keys(weatherIcons)[0];
         if (iconPath) {
           const icon = await import(iconPath);
           setIconSrc(icon.default);
         }
         if (!iconPath) {
-          const defaultIconKey = Object.keys(weatherIcons)[0];
+         
           iconPath = weatherIcons[defaultIconKey];
         }
       }
